@@ -6,6 +6,8 @@ class trie {
         trie();
     
     private:
-        tnode* root;
+        tnode<T>* root;
         int size;
 };
+
+#include "trie.hpp"
