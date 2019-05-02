@@ -3,7 +3,8 @@
 template <typename T>
 class tnode {
     public:
-        explicit tnode(T v, char keu, bool eow = false);
+        explicit tnode(T v, char key, bool eow = false);
+        void addChild(tnode* child, char key);
     private:
         T mapped_value;
         char key;
@@ -18,4 +19,9 @@ tnode<T>::tnode(T val, char key, bool eow) {
     this-> isEnd = eow;
     std::vector <tnode*> ch(256, nullptr);
     this->children = ch;
+}
+
+template <typename T>
+void tnode<T>::addChild(tnode* child, char key) {
+    this->children[(int)key] = child;
 }
