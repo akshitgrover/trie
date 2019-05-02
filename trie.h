@@ -1,10 +1,12 @@
 #include <string>
 
-#include "_trie_node.h"
+#include "_trie_iterator.h"
 
 template <typename T>
 class trie {
   public:
+    using iterator = trie_iterator<T>;
+
     trie();
     void insert(std::string, T);
     bool exist(std::string);
