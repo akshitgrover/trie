@@ -28,7 +28,7 @@ void trie<T>::insert(std::string key, T val) {
     this->size += 1;
   }
   node->update(val);
-  node->markEnd();
+  node->markEnd(key);
 }
 
 template <typename T>

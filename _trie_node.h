@@ -1,3 +1,4 @@
+#include <string>
 #include <vector>
 
 template <typename T>
@@ -8,7 +9,7 @@ class tnode {
     tnode<T>* getChild(char key);
     T get();
     void update(T val);
-    void markEnd();
+    void markEnd(std::string);
     bool isEnd();
   private:
     T mapped_value;
@@ -16,6 +17,7 @@ class tnode {
     bool isEndOfWord;
     tnode<T>* parent;
     std::vector <tnode<T>*> children;
+    std::string key;
 };
 
 template <typename T>
@@ -23,6 +25,7 @@ tnode<T>::tnode(T val, tnode<T>* p, int ascii, bool eow) {
   this->mapped_value = val;
   this-> isEndOfWord = eow;
   this->p_index = ascii;
+  this-> key = "";
   this->parent = p;
   this->children = *(new std::vector <tnode<T>*>(256, nullptr));
 }
@@ -48,7 +51,8 @@ void tnode<T>::update(T val) {
 }
 
 template <typename T>
-void tnode<T>::markEnd() {
+void tnode<T>::markEnd(std::string key) {
+  this->key = key;
   this->isEndOfWord = true;
 }
 
