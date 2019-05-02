@@ -26,3 +26,23 @@ void trie<T>::insert(std::string key, T val) {
   node->update(val);
   node->markEnd();
 }
+
+template <typename T>
+bool trie<T>::exist(std::string key) {
+  int ascii;
+  bool res = true;
+  tnode<T>* node = this->root;
+  sIter(key, it) {
+    ascii = (int)*it;
+    if (node->getChild(ascii) == nullptr) {
+      res = false;
+      break;
+    } else {
+      node = node->getChild(ascii);
+    }
+  }
+  if (!node->isEnd()) {
+    res = false;
+  }
+  return res;
+}
