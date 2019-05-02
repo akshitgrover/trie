@@ -50,3 +50,8 @@ bool trie<T>::exist(std::string key) {
   }
   return res;
 }
+
+template <typename T>
+bool trie<T>::empty() {
+  return this->size == 0;
+}

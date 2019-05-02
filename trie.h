@@ -8,6 +8,7 @@ class trie {
     trie();
     void insert(std::string, T);
     bool exist(std::string);
+    bool empty();
   private:
     tnode<T>* root;
     int size;
