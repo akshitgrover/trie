@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 
 #include "_trie_util.h"
 
@@ -24,4 +25,5 @@ void trie<T>::insert(std::string key, T val) {
     }
   }
   node->update(val);
+  node->markEnd();
 }
