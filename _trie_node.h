@@ -7,6 +7,7 @@ class tnode {
     void addChild(tnode* child, char key);
     tnode<T>* getChild(char key);
     T getVal();
+    void update(T val);
   private:
     T mapped_value;
     bool isEnd;
@@ -33,4 +34,9 @@ tnode<T>* tnode<T>::getChild(char key) {
 template <typename T>
 T tnode<T>::getVal() {
   return this->mapped_value;
+}
+
+template <typename T>
+void tnode<T>::update(T val) {
+  this->mapped_value = val;
 }
