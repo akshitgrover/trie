@@ -9,16 +9,17 @@ class tnode {
     T get();
     void update(T val);
     void markEnd();
+    bool isEnd();
   private:
     T mapped_value;
-    bool isEnd;
+    bool isEndOfWord;
     std::vector <tnode*> children;
 };
 
 template <typename T>
 tnode<T>::tnode(T val, bool eow) {
   this->mapped_value = val;
-  this-> isEnd = eow;
+  this-> isEndOfWord = eow;
   this->children = *(new std::vector <tnode<T>*>(256, nullptr));
 }
 
@@ -44,5 +45,10 @@ void tnode<T>::update(T val) {
 
 template <typename T>
 void tnode<T>::markEnd() {
-  this->isEnd = true;
+  this->isEndOfWord = true;
+}
+
+template <typename T>
+bool tnode<T>::isEnd() {
+  return this->isEndOfWord;
 }
