@@ -16,6 +16,6 @@ tnode<T>::tnode(T val, char key, bool eow) {
     this->mapped_value = val;
     this->key = key;
     this-> isEnd = eow;
-    std::vector <tnode*> ch(256);
+    std::vector <tnode*> ch(256, nullptr);
     this->children = ch;
 }
