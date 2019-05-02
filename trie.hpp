@@ -5,7 +5,7 @@
 template <typename T>
 trie<T>::trie(): size(0) {
     T flag;
-    root = new tnode<T>(flag, nullptr);
+    root = new tnode<T>(flag, nullptr, -1);
     size = 0;
 }
 
@@ -19,7 +19,7 @@ void trie<T>::insert(std::string key, T val) {
       node = node->getChild(ascii);
     } else {
       T flag;
-      tnode<T>* _node = new tnode<T>(flag, node);
+      tnode<T>* _node = new tnode<T>(flag, node, ascii);
       node->addChild(_node, ascii);
       node = node->getChild(ascii);
     }

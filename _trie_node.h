@@ -3,7 +3,7 @@
 template <typename T>
 class tnode {
   public:
-    explicit tnode(T v, tnode<T>* p, bool eow = false);
+    explicit tnode(T v, tnode<T>* p, int ascii, bool eow = false);
     void addChild(tnode* child, char key);
     tnode<T>* getChild(char key);
     T get();
@@ -12,15 +12,17 @@ class tnode {
     bool isEnd();
   private:
     T mapped_value;
+    int p_index;
     bool isEndOfWord;
     tnode<T>* parent;
     std::vector <tnode<T>*> children;
 };
 
 template <typename T>
-tnode<T>::tnode(T val, tnode<T>* p, bool eow) {
+tnode<T>::tnode(T val, tnode<T>* p, int ascii, bool eow) {
   this->mapped_value = val;
   this-> isEndOfWord = eow;
+  this->p_index = ascii;
   this->parent = p;
   this->children = *(new std::vector <tnode<T>*>(256, nullptr));
 }
