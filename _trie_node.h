@@ -6,6 +6,7 @@ class tnode {
   public:
     explicit tnode(T v, tnode<T>* p, int ascii, bool eow = false);
     void addChild(tnode* child, char key);
+    std::string getKey();
     tnode<T>* getChild(char key);
     T get();
     void update(T val);
@@ -33,6 +34,11 @@ tnode<T>::tnode(T val, tnode<T>* p, int ascii, bool eow) {
 template <typename T>
 void tnode<T>::addChild(tnode* child, char key) {
   this->children[(int)key] = child;
+}
+
+template <typename T>
+std::string tnode<T>::getKey() {
+  return this->key;
 }
 
 template <typename T>
