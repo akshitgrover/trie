@@ -8,7 +8,7 @@ class tnode {
     void addChild(tnode* child, int key);
     std::string getKey();
     tnode<T>* getChild(int key);
-    T get();
+    T& get();
     void update(T val);
     void markEnd(std::string);
     bool isEnd();
@@ -49,7 +49,7 @@ tnode<T>* tnode<T>::getChild(int key) {
 }
 
 template <typename T>
-T tnode<T>::get() {
+T& tnode<T>::get() {
   return this->mapped_value;
 }
 
