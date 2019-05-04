@@ -22,6 +22,7 @@ class trie_iterator {
     // Operators
     trie_iterator<T>& operator++ ();
     trie_iterator<T> operator++ (int);
+    bool operator== (const trie_iterator<T>&) const;
 };
 
 template <typename T>
@@ -43,4 +44,13 @@ trie_iterator<T> trie_iterator<T>::operator++ (int) {
   trie_iterator<T> t = *this;
   ++(*this);
   return t;
+}
+
+template <typename T>
+bool trie_iterator<T>::operator== (const trie_iterator<T>& t) const {
+  if (this->cur_node->getParentIndex() == t.cur_node->getParentIndex()
+  && this->cur_node->getParent() == t.cur_node->getParent()) {
+    return true;
+  }
+  return false;
 }
