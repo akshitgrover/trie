@@ -1,12 +1,14 @@
 #include <string>
 #include <iterator>
+#include <iostream>
 
 #include "_trie_node.h"
+#include "_trie_util.h"
 
 template <typename T>
 class trie_iterator {
   private:
-    tnode<T>* root;
+    tnode<T>* cur_node;
   public:
     using iterator_category = std::bidirectional_iterator_tag;
     using difference_type = std::ptrdiff_t;
@@ -16,9 +18,21 @@ class trie_iterator {
 
     // Constructors
     explicit trie_iterator(tnode<T>*);
+
+    // Operators
+    trie_iterator<T>& operator++ ();
 };
 
 template <typename T>
 trie_iterator<T>::trie_iterator(tnode<T>* root) {
-  this->root = root;
+  this->cur_node = root;
+}
+
+template <typename T>
+trie_iterator<T>& trie_iterator<T>::operator++ () {
+  if (this->cur_node == nullptr) {
+    return *this;
+  }
+  this->cur_node = recur(this->cur_node);
+  return *  this;
 }
