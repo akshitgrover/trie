@@ -62,6 +62,11 @@ trie_iterator<T>& trie_iterator<T>::operator-- () {
 
 template <typename T>
 bool trie_iterator<T>::operator== (const trie_iterator<T>& t) const {
+  if (this->cur_node == nullptr && t.cur_node == nullptr) {
+    return true;
+  } else if (this->cur_node == nullptr || t.cur_node == nullptr) {
+    return false;
+  }
   if (this->cur_node->getParentIndex() == t.cur_node->getParentIndex()
   && this->cur_node->getParent() == t.cur_node->getParent()) {
     return true;
