@@ -12,6 +12,8 @@ class tnode {
     void update(T val);
     void markEnd(std::string);
     bool isEnd();
+    tnode<T>* getParent();
+    int getParentIndex();
   private:
     T mapped_value;
     int p_index;
@@ -65,4 +67,14 @@ void tnode<T>::markEnd(std::string key) {
 template <typename T>
 bool tnode<T>::isEnd() {
   return this->isEndOfWord;
+}
+
+template <typename T>
+tnode<T>* tnode<T>::getParent() {
+  return this->parent;
+}
+
+template <typename T>
+int tnode<T>::getParentIndex() {
+  return this->p_index;
 }
