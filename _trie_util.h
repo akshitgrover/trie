@@ -47,6 +47,6 @@ tnode<T>* rrecur(tnode<T>* n, int offset) {
     if (it->isEnd()) {
       return it;
     }
-    return rrecur(it, 0);
+    return recur(it, 0);
   }
 }
