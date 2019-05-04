@@ -9,7 +9,6 @@ for (std::string::iterator it = c.begin(); it != c.end(); it++)
 template <typename T>
 tnode<T>* recur(tnode<T>* n, int offset = 0) {
   if (n == nullptr) {
-    std::cout << "Null Received" << std::endl;
     return nullptr;
   }
   tnode<T>* it = nullptr;
@@ -17,10 +16,6 @@ tnode<T>* recur(tnode<T>* n, int offset = 0) {
     it = n->getChild(i);
     if (it == nullptr) {
       if (i == 127) {
-        if (n->getParent() == nullptr) {
-          std::cout << "Exhausted" << std::endl;
-          return nullptr;
-        }
         return recur(n->getParent(), n->getParentIndex() + 1);
       }
       continue;
@@ -29,5 +24,29 @@ tnode<T>* recur(tnode<T>* n, int offset = 0) {
       return it;
     }
     return recur(it, 0);
+  }
+}
+
+template <typename T>
+tnode<T>* rrecur(tnode<T>* n, int offset) {
+  if (n == nullptr) {
+    return nullptr;
+  }
+  if (offset <= -1) {
+    return rrecur(n->getParent(), n->getParentIndex() - 1);
+  }
+  tnode<T>* it = nullptr;
+  for (int i = offset; i > -1; i--) {
+    it = n->getChild(i);
+    if (it == nullptr) {
+      if (i == 0) {
+        return rrecur(n->getParent(), n->getParentIndex() - 1);
+      }
+      continue;
+    }
+    if (it->isEnd()) {
+      return it;
+    }
+    return rrecur(it, 0);
   }
 }

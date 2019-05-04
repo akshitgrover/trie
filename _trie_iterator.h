@@ -22,6 +22,7 @@ class trie_iterator {
     // Operators
     trie_iterator<T>& operator++ ();
     trie_iterator<T> operator++ (int);
+    trie_iterator<T>& operator-- ();
     bool operator== (const trie_iterator<T>&) const;
     bool operator!= (const trie_iterator<T>&) const;
 };
@@ -45,6 +46,18 @@ trie_iterator<T> trie_iterator<T>::operator++ (int) {
   trie_iterator<T> t = *this;
   ++(*this);
   return t;
+}
+
+template <typename T>
+trie_iterator<T>& trie_iterator<T>::operator-- () {
+  if (this->cur_node == nullptr) {
+    return *this;
+  }
+  this->cur_node = rrecur(
+    this->cur_node->getParent(),
+    this->cur_node->getParentIndex() - 1
+  );
+  return *this;
 }
 
 template <typename T>
