@@ -34,10 +34,19 @@ trie_iterator<T>::trie_iterator(tnode<T>* root) {
 
 template <typename T>
 trie_iterator<T>& trie_iterator<T>::operator++ () {
-  if (this->cur_node == nullptr) {
+  if (this->cur_node == nullptr || this->cur_node->getParentIndex() == 1516) {
     return *this;
   }
-  this->cur_node = recur(this->cur_node);
+  if (this->cur_node->getParentIndex() == -1516) {
+    this->cur_node = this->cur_node->getParent();
+    return *this;
+  }
+  tnode<T>* tmp = recur(this->cur_node);
+  if (tmp == nullptr) {
+    T flag;
+    tmp = new tnode<T>(flag, this->cur_node, 1516);
+  }
+  this->cur_node = tmp;
   return *this;
 }
 
@@ -50,13 +59,22 @@ trie_iterator<T> trie_iterator<T>::operator++ (int) {
 
 template <typename T>
 trie_iterator<T>& trie_iterator<T>::operator-- () {
-  if (this->cur_node == nullptr) {
+  if (this->cur_node == nullptr || this->cur_node->getParentIndex() == -1516) {
     return *this;
   }
-  this->cur_node = rrecur(
+  if (this->cur_node->getParentIndex() == 1516) {
+    this->cur_node = this->cur_node->getParent();
+    return *this;
+  }
+  tnode<T>* tmp = rrecur(
     this->cur_node->getParent(),
     this->cur_node->getParentIndex() - 1
   );
+  if (tmp == nullptr) {
+    T flag;
+    tmp = new tnode<T>(flag, this->cur_node, -1516);
+  }
+  this->cur_node = tmp;
   return *this;
 }
 
