@@ -12,7 +12,7 @@ class trie_iterator {
   public:
     using iterator_category = std::bidirectional_iterator_tag;
     using difference_type = std::ptrdiff_t;
-    using value_type = std::pair<std::string, T>;
+    using value_type = T;
     using pointer = value_type*;
     using reference = value_type&;
 
@@ -27,6 +27,8 @@ class trie_iterator {
     trie_iterator<T> operator-- (int);
     bool operator== (const trie_iterator<T>&) const;
     bool operator!= (const trie_iterator<T>&) const;
+    reference operator* () const;
+    pointer operator-> () const;
 };
 
 template <typename T>
@@ -110,3 +112,15 @@ template <typename T>
 bool trie_iterator<T>::operator!= (const trie_iterator<T>& t) const {
   return !(*this == t);
 }
+
+template <typename T>
+typename trie_iterator<T>::reference trie_iterator<T>::operator* () const {
+  return this->cur_node->get();
+}
+
+template <typename T>
+typename trie_iterator<T>::pointer trie_iterator<T>::operator-> () const {
+  return &this->cur_node->get();
+}
+
+
