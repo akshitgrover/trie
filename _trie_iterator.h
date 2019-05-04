@@ -23,6 +23,7 @@ class trie_iterator {
     trie_iterator<T>& operator++ ();
     trie_iterator<T> operator++ (int);
     bool operator== (const trie_iterator<T>&) const;
+    bool operator!= (const trie_iterator<T>&) const;
 };
 
 template <typename T>
@@ -53,4 +54,9 @@ bool trie_iterator<T>::operator== (const trie_iterator<T>& t) const {
     return true;
   }
   return false;
+}
+
+template <typename T>
+bool trie_iterator<T>::operator!= (const trie_iterator<T>& t) const {
+  return !(*this == t);
 }
