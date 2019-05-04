@@ -18,6 +18,7 @@ class trie_iterator {
 
     // Constructors
     explicit trie_iterator(tnode<T>*);
+    trie_iterator();
 
     // Operators
     trie_iterator<T>& operator++ ();
@@ -31,6 +32,11 @@ class trie_iterator {
 template <typename T>
 trie_iterator<T>::trie_iterator(tnode<T>* root) {
   this->cur_node = root;
+}
+
+template <typename T>
+trie_iterator<T>::trie_iterator() {
+  this->cur_node = nullptr;
 }
 
 template <typename T>
