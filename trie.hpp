@@ -62,3 +62,28 @@ typename trie<T>::iterator trie<T>::begin() {
   trie_iterator<T> it = *(new trie_iterator<T>(this->root));
   return ++it;
 }
+
+template <typename T>
+tnode<T>* rbrecur(tnode<T>* n, int offset = 127, tnode<T>* r = nullptr) {
+  tnode<T>* it = nullptr;
+  for (int i = offset; i > -1; i--) {
+    it = n->getChild(i);
+    if (it == nullptr) {
+      if (i == 0) {
+        return r;
+      }
+      continue;
+    }
+    if (it->isEnd()) {
+      r = it;
+    }
+    return rbrecur(it, 127, r);
+  }
+}
+
+template <typename T>
+typename trie<T>::iterator trie<T>::rbegin() {
+  tnode<T>* t = rbrecur(this->root);
+  trie_iterator<T> it = *(new trie_iterator<T>(t));
+  return it;
+}
