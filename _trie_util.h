@@ -29,11 +29,11 @@ tnode<T>* recur(tnode<T>* n, int offset = 0) {
 
 template <typename T>
 tnode<T>* rrecur(tnode<T>* n, int offset) {
-  if (n == nullptr) {
+  if (n == nullptr || offset <= -1) {
     return nullptr;
   }
-  if (offset <= -1) {
-    return rrecur(n->getParent(), n->getParentIndex() - 1);
+  if (n->isEnd()) {
+    return n;
   }
   tnode<T>* it = nullptr;
   for (int i = offset; i > -1; i--) {
