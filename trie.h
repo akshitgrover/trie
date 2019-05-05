@@ -15,6 +15,7 @@ class trie {
     iterator end();
     iterator rbegin();
     iterator rend();
+    iterator find(std::string);
   private:
     tnode<T>* root;
     int size;

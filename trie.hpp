@@ -112,3 +112,19 @@ typename trie<T>::iterator trie<T>::rend() {
   tnode<T>* t = new tnode<T>(flag, r, -1516);
   return *(new trie_iterator<T>(t));
 }
+
+template <typename T>
+typename trie<T>::iterator trie<T>::find(std::string key) {
+  tnode<T>* n = this->root;
+  sIter(key, it) {
+    n = n->getChild(*it);
+    if (n == nullptr) {
+      return this->end();
+    }
+  }
+  if (!n->isEnd()) {
+    return this->end();
+  }
+  trie_iterator<T> it = *(new trie_iterator<T>(n));
+  return it;
+}
