@@ -12,6 +12,7 @@ class trie {
     bool exist(std::string);
     bool empty();
     iterator begin();
+    iterator end();
     iterator rbegin();
   private:
     tnode<T>* root;

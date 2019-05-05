@@ -64,7 +64,21 @@ typename trie<T>::iterator trie<T>::begin() {
 }
 
 template <typename T>
-tnode<T>* rbrecur(tnode<T>* n, int offset = 127, tnode<T>* r = nullptr) {
+tnode<T>* rbrecur(tnode<T>* n, int offset = 127, tnode<T>* r = nullptr);
+
+template <typename T>
+typename trie<T>::iterator trie<T>::end() {
+  T flag;
+  tnode<T>* r = nullptr;
+  if (!this->empty()) {
+    r = rbrecur(this->root);
+  }
+  tnode<T>* t = new tnode<T>(flag, r, 1516);
+  return *(new trie_iterator<T>(t));
+}
+
+template <typename T>
+tnode<T>* rbrecur(tnode<T>* n, int offset, tnode<T>* r) {
   tnode<T>* it = nullptr;
   for (int i = offset; i > -1; i--) {
     it = n->getChild(i);
