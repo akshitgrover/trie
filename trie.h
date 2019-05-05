@@ -11,6 +11,7 @@ class trie {
     void insert(std::string, T);
     bool exist(std::string);
     bool empty();
+    iterator begin();
   private:
     tnode<T>* root;
     int size;

@@ -1,6 +1,7 @@
 #include <string>
 
 #include "_trie_util.h"
+#include "_trie_iterator.h"
 
 template <typename T>
 trie<T>::trie(): size(0) {
@@ -54,4 +55,10 @@ bool trie<T>::exist(std::string key) {
 template <typename T>
 bool trie<T>::empty() {
   return this->size == 0;
+}
+
+template <typename T>
+typename trie<T>::iterator trie<T>::begin() {
+  trie_iterator<T> it = *(new trie_iterator<T>(this->root));
+  return ++it;
 }
