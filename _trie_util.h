@@ -29,7 +29,7 @@ tnode<T>* recur(tnode<T>* n, int offset = 0) {
 
 template <typename T>
 tnode<T>* rrecur(tnode<T>* n, int offset) {
-  if (n == nullptr || offset <= -1) {
+  if (n == nullptr) {
     return nullptr;
   }
   if (n->isEnd()) {
