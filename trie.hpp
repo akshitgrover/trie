@@ -101,3 +101,14 @@ typename trie<T>::iterator trie<T>::rbegin() {
   trie_iterator<T> it = *(new trie_iterator<T>(t));
   return it;
 }
+
+template <typename T>
+typename trie<T>::iterator trie<T>::rend() {
+  T flag;
+  tnode<T>* r = nullptr;
+  if (!this->empty()) {
+    r = recur(this->root);
+  }
+  tnode<T>* t = new tnode<T>(flag, r, -1516);
+  return *(new trie_iterator<T>(t));
+}

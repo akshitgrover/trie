@@ -14,6 +14,7 @@ class trie {
     iterator begin();
     iterator end();
     iterator rbegin();
+    iterator rend();
   private:
     tnode<T>* root;
     int size;
