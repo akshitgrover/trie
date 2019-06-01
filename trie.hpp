@@ -96,21 +96,13 @@ tnode<T>* rbrecur(tnode<T>* n, int offset, tnode<T>* r) {
 }
 
 template <typename T>
-typename trie<T>::iterator trie<T>::rbegin() {
-  tnode<T>* t = rbrecur(this->root);
-  trie_iterator<T> it = *(new trie_iterator<T>(t));
-  return it;
+typename trie<T>::reverse_iterator trie<T>::rbegin() {
+  return *(new trie<T>::reverse_iterator(trie<T>::end()));
 }
 
 template <typename T>
-typename trie<T>::iterator trie<T>::rend() {
-  T flag;
-  tnode<T>* r = nullptr;
-  if (!this->empty()) {
-    r = recur(this->root);
-  }
-  tnode<T>* t = new tnode<T>(flag, r, -1516);
-  return *(new trie_iterator<T>(t));
+typename trie<T>::reverse_iterator trie<T>::rend() {
+  return *(new trie<T>::reverse_iterator(trie<T>::begin()));
 }
 
 template <typename T>
