@@ -7,6 +7,9 @@
 #include "_trie_node.h"
 #include "_trie_util.h"
 
+/*
+  Iterator class definition.
+*/
 template <typename T>
 class trie_iterator {
   private:
@@ -22,6 +25,11 @@ class trie_iterator {
     explicit trie_iterator(tnode<T>*);
     trie_iterator();
 
+  protected:
+    // Member functions
+    tnode<T>* getNode();
+
+  public:
     // Operators
     trie_iterator<T>& operator++ ();
     trie_iterator<T> operator++ (int);
@@ -33,6 +41,9 @@ class trie_iterator {
     pointer operator-> () const;
 };
 
+/*
+  Function definitions of trie_iterator class member functions.
+*/
 template <typename T>
 trie_iterator<T>::trie_iterator(tnode<T>* root) {
   this->cur_node = root;
@@ -125,4 +136,7 @@ typename trie_iterator<T>::pointer trie_iterator<T>::operator-> () const {
   return &this->cur_node->get();
 }
 
-
+template <typename T>
+tnode<T>* trie_iterator<T>::getNode() {
+  return this->cur_node;
+}
